@@ -1,16 +1,40 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extend Hex</title>
+  <script>
+    function extendHex(hex) {
+      // Remove the '#' if it exists
+      hex = hex.replace('#', '');
+
+      // Ensure the hex code is in uppercase
+      hex = hex.toUpperCase();
+
+      // Extend the hex code by repeating each character
+      if (hex.length === 3) {
+        return '#' + hex.split('').map(c => c + c).join('');
+      }
+
+      return '#' + hex; // If it's already 6 characters, return as is
+    }
+
+    function handleInput() {
+      const inputHex = document.getElementById('hexInput').value;
+      const result = extendHex(inputHex);
+      document.getElementById('result').textContent = `Full Hex Code: ${result}`;
+    }
+  </script>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <h1>Extend Hex Code</h1>
 
+  <label for="hexInput">Enter Short Hex Code (e.g., #abc):</label>
+  <input type="text" id="hexInput" placeholder="Enter hex code" /><br><br>
+
+  <button onclick="handleInput()">Extend Hex</button>
+
+  <p id="result"></p>
 </body>
-
 </html>
